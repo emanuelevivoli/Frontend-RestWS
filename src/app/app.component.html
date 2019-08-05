@@ -1,21 +1,37 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <img width="300" alt="EISLAB Logo" src="https://www.ltu.se/cms_fs/1.180076!/image/Machinelearning_LTU12.JPG_gen/derivatives/landscape_fullwidth/Machinelearning_LTU12.JPG">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div style="text-align:center">
+  <h2>Are you interested about Deep Learning? </h2>
+  <div>
+  <h4>Your answer:</h4>
+      <input #request />
+    <!-- (click) passes input value to send() and then clears the input -->
+    <button (click)="send(request.value); request.value=''">
+      send
+    </button>
+  </div>
+</div>
+<br>
+<div style="text-align:center">
+    <h4>Our answer (subscribeResult):</h4>
+      <!-- the answer_subscribe is taken from AppComponent.subscribeResult attribute -->
+      <output name="answer_subscribe">{{subscribeResult.text}}</output>
+</div>
+<div style="text-align:center">
+    <h4>Our answer (promiseResult):</h4>
+      <!-- the answer_promise is taken from AppComponent.promiseResult attribute -->
+      <output name="answer_promise">{{promiseResult.text}}</output>
+</div>
+<div style="text-align:center">
+    <h4>Our answer (asyncResult):</h4>
+      <!-- the answer_async is taken from AppComponent.asyncResult attribute -->
+      <output name="answer_async">{{asyncResult.text}}</output>
+</div>
+
 
 <router-outlet></router-outlet>
