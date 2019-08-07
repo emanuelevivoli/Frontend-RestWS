@@ -13,46 +13,49 @@ export class AppComponent {
   private positive = ['y', 'yes', 'yep', 's', 'si', 't', 'true'];
   private baseUrl = 'http://localhost:3000';
 
-  subscribeResult = JSON;
-  promiseResult = JSON;
-  asyncResult = JSON;
+  operation = ['-', '*'];
+
+  name = '';
+  formula = '0 + 0';
+  realResult = 0;
+  modelResult: number;
+  score: number;
+
+  numbers = [0, 0];
+  op = 0;
 
   constructor(
     private http: HttpClient,
     ) { }
 
-  getDataUsingSubscribe(params) {
-    this.http.get<JSON>(this.baseUrl + '/answer', {params}).subscribe(data => {
-      // this.jsonAnswer = JSON.parse(JSON.stringify(data));
-      console.log('Subscribe executed.', data);
-      this.subscribeResult = data;
-    });
-    console.log('I will not wait until subscribe is executed..');
+  generateFormula() {
+    this.numbers[0] = Math.floor(Math.random() * 100);
+    this.numbers[1] = Math.floor(Math.random() * 100);
+    this.op = Math.floor(Math.random() * this.operation.length);
+
+    this.formula = String(this.numbers[0]) + ' ' + this.operation[this.op] + ' ' + String(this.numbers[1]);
   }
 
-  getDataUsingPromise(params) {
+  update(data: JSON) {
+    console.log(data);
+    this.score = data['score'];
+    this.modelResult = data['model_result'];
+    this.realResult = data['user_result'];
+  }
+
+  getDataUsingPromise(params: HttpParams) {
     this.http.get<JSON>(this.baseUrl + '/answer', {params}).toPromise().then(data => {
       // this.jsonAnswer = JSON.parse(JSON.stringify(data));
       console.log('Promise executed.', data);
-      this.promiseResult = data;
+      this.update(data);
     });
     console.log('I will not wait until promise is resolved..');
   }
 
-  async getAsyncData(params) {
-    this.asyncResult = await this.http.get<JSON>(this.baseUrl + '/answer', {params}).toPromise();
-    console.log('No issues, I will wait until promise is resolved..');
-    console.log('Async executed.', this.asyncResult);
-  }
+  async send(name: string, result: number) {
 
-  async send(ask) {
-    console.log(ask);
-    const app = this.positive.includes(ask);
-    console.log(app);
-    const  params = new  HttpParams().set('ask', String(app));
+    const params = new HttpParams().set('user', name).set('formula', this.formula).set('result', String(result));
 
-    this.getAsyncData(params);
-    this.getDataUsingSubscribe(params);
     this.getDataUsingPromise(params);
 
   }

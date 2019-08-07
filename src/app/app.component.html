@@ -6,32 +6,41 @@
   <img width="300" alt="EISLAB Logo" src="https://www.ltu.se/cms_fs/1.180076!/image/Machinelearning_LTU12.JPG_gen/derivatives/landscape_fullwidth/Machinelearning_LTU12.JPG">
 </div>
 <div style="text-align:center">
-  <h2>Are you interested about Deep Learning? </h2>
-  <div>
-  <h4>Your answer:</h4>
-      <input #request />
-    <!-- (click) passes input value to send() and then clears the input -->
-    <button (click)="send(request.value); request.value=''">
-      send
-    </button>
-  </div>
+    <div>
+      <h2>Who are you? </h2>
+      <input #name />
+    </div>
+    <div>
+      <h4>Can you solve the equation?</h4>
+      <button (click)="generateFormula()">
+        generate formula
+      </button>
+      <output name="formula"> {{formula}} = ?</output>
+      <!-- (click) passes input value to send() and then clears the input -->
+    </div>
+    <br>
+    <div>
+      <input #userresult type="number"/>
+      <button (click)="send(name.value, userresult.value)">
+        send
+      </button>
+    </div>
+
+    <br>
+    <br>
+    <div>
+      <h4>Real solution</h4>
+      <output name="modelresult"> {{modelResult}}</output>
+      <!-- (click) passes input value to send() and then clears the input -->
+    </div>
+    <div>
+      <h2>Your score: </h2>
+      <h4> (1 max, 0 min) </h4>
+      <output name="score"> {{score}}</output>
+    </div>
 </div>
 <br>
-<div style="text-align:center">
-    <h4>Our answer (subscribeResult):</h4>
-      <!-- the answer_subscribe is taken from AppComponent.subscribeResult attribute -->
-      <output name="answer_subscribe">{{subscribeResult.text}}</output>
-</div>
-<div style="text-align:center">
-    <h4>Our answer (promiseResult):</h4>
-      <!-- the answer_promise is taken from AppComponent.promiseResult attribute -->
-      <output name="answer_promise">{{promiseResult.text}}</output>
-</div>
-<div style="text-align:center">
-    <h4>Our answer (asyncResult):</h4>
-      <!-- the answer_async is taken from AppComponent.asyncResult attribute -->
-      <output name="answer_async">{{asyncResult.text}}</output>
-</div>
+
 
 
 <router-outlet></router-outlet>
