@@ -10,17 +10,10 @@
       <h2>Who are you? </h2>
       <input #name />
     </div>
-    <div>
-      <h4>Can you solve the equation?</h4>
-      <button (click)="generateFormula()">
-        generate formula
-      </button>
-      <output name="formula"> {{formula}} = ?</output>
-      <!-- (click) passes input value to send() and then clears the input -->
-    </div>
     <br>
     <div>
-      <input #userresult type="number"/>
+      <h4>How are you today?</h4>
+      <input #userresult type="stringformat"/>
       <button (click)="send(name.value, userresult.value)">
         send
       </button>
@@ -29,12 +22,12 @@
     <br>
     <br>
     <div>
-      <h4>Real solution</h4>
+      <h4>Your sentence is:</h4>
       <output name="modelresult"> {{modelResult}}</output>
       <!-- (click) passes input value to send() and then clears the input -->
     </div>
     <div>
-      <h2>Your score: </h2>
+      <h2>Your humor is positiveness: </h2>
       <h4> (1 max, 0 min) </h4>
       <output name="score"> {{score}}</output>
     </div>
